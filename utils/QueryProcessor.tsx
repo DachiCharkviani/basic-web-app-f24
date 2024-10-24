@@ -174,6 +174,27 @@ export default function QueryProcessor(query: string): string {
     // Handle the case where no numbers are found
     return "No numbers found in the query.";
   }  
+
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("to the power of")) {
+    // Extract numbers from the query using a regular expression
+    const numbers = query.match(/\d+/g);
+  
+    if (numbers && numbers.length === 2) {
+      // Convert extracted numbers to integers
+      const base = parseInt(numbers[0], 10);
+      const exponent = parseInt(numbers[1], 10);
+  
+      // Perform the power operation
+      const result = Math.pow(base, exponent);
+      
+      // Return the result as a string
+      return result.toString();
+    }
+  
+    // Handle the case where no numbers are found or invalid number of numbers
+    return "Invalid query format or numbers.";
+  }
+  
   
   return "";
 }
