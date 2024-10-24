@@ -118,6 +118,34 @@ export default function QueryProcessor(query: string): string {
     // Handle the case where no numbers are found
     return "No numbers found in the query.";
   }
+
+  if (query.toLowerCase().includes("which of the following numbers are primes")) {
+    // Extract numbers from the query using a regular expression
+    const numbers = query.match(/\d+/g);
+  
+    if (numbers) {
+      // Convert extracted numbers to integers
+      const numericValues = numbers.map(Number);
+  
+      // Function to check if a number is prime
+      const isPrime = (num: number): boolean => {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      };
+  
+      // Filter numbers that are prime
+      const primeNumbers = numericValues.filter(isPrime);
+  
+      // Return the prime numbers as a string (or a comma-separated string if multiple primes)
+      return primeNumbers.length > 0 ? primeNumbers.join(", ") : "No prime numbers found.";
+    }
+  
+    // Handle the case where no numbers are found
+    return "No numbers found in the query.";
+  }
   
   
   return "";

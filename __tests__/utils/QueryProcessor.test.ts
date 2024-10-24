@@ -82,5 +82,22 @@ describe("QueryProcessor", () => {
             "50"
         ));
     });
+
+    test('should return the correct difference', () => {
+        const query = "What is 83 minus 74?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "9"
+        ));
+    });
+    
+    test('should return correct difference with different numbers', () => {
+        const query = "What is 100 minus 50?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "50"
+        ));
+    });
+    
     
 });
