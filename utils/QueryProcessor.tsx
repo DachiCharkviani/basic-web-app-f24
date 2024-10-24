@@ -37,6 +37,24 @@ export default function QueryProcessor(query: string): string {
     return "No numbers found in the query.";
   }
   
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("plus")) {
+    // Extract numbers from the query using a regular expression
+    const numbers = query.match(/\d+/g);
+    
+    if (numbers) {
+      // Convert extracted numbers to integers
+      const numericValues = numbers.map(Number);
+  
+      // Perform the addition operation
+      const sum = numericValues.reduce((a, b) => a + b, 0);
+      
+      // Return the result as a string
+      return sum.toString();
+    }
+  
+    // Handle the case where no numbers are found
+    return "No numbers found in the query.";
+  }  
   
   return "";
 }

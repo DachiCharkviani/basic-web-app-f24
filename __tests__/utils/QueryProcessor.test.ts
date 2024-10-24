@@ -36,10 +36,35 @@ describe("QueryProcessor", () => {
     });
 
     test('should return highest', () => {
-        const query = "which of the following numbers is the largest: 10, 20, 1?";
+        const query = "which of the following numbers is the largest: 30, 20, 1?";
         const response: string = QueryProcessor(query);
         expect(response).toBe((
-            "20"
+            "30"
           ));
     });
+
+    test('should return the correct sum', () => {
+        const query = "what is 90 plus 40?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "130"
+        ));
+    });
+    
+    test('should return the correct sum with different numbers', () => {
+        const query = "what is 15 plus 25?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "40"
+        ));
+    });
+    
+    test('should handle multiple numbers', () => {
+        const query = "what is 10 plus 20 plus 30?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "60"
+        ));
+    });
+    
 });
