@@ -180,21 +180,23 @@ export default function QueryProcessor(query: string): string {
     const numbers = query.match(/\d+/g);
   
     if (numbers && numbers.length === 2) {
-      // Convert extracted numbers to integers
-      const base = parseInt(numbers[0], 10);
-      const exponent = parseInt(numbers[1], 10);
+      // Convert extracted numbers to BigInt
+      const base = BigInt(numbers[0]);
+      const exponent = BigInt(numbers[1]);
   
-      // Perform the power operation
-      const result = Math.pow(base, exponent);
-      
+      // Manually perform the power operation (since ** might not be available in older targets)
+      let result = BigInt(1);
+      for (let i = BigInt(0); i < exponent; i++) {
+        result *= base;
+      }
+  
       // Return the result as a string
       return result.toString();
     }
   
     // Handle the case where no numbers are found or invalid number of numbers
     return "Invalid query format or numbers.";
-  }
-  
+  }  
   
   return "";
 }
