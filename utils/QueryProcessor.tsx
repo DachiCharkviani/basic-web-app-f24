@@ -55,6 +55,32 @@ export default function QueryProcessor(query: string): string {
     // Handle the case where no numbers are found
     return "No numbers found in the query.";
   }  
+
+  if (query.toLowerCase().includes("which of the following numbers is both a square and a cube")) {
+    // Extract numbers from the query using a regular expression
+    const numbers = query.match(/\d+/g);
+    
+    if (numbers) {
+      // Convert extracted numbers to integers
+      const numericValues = numbers.map(Number);
+  
+      // Function to check if a number is a perfect sixth power
+      const isPerfectSixthPower = (num: number): boolean => {
+        const root = Math.round(Math.pow(num, 1 / 6));
+        return Math.pow(root, 6) === num;
+      };
+  
+      // Filter numbers that are both a square and a cube (i.e., perfect sixth powers)
+      const result = numericValues.filter(isPerfectSixthPower);
+  
+      // Return the result as a string (or a comma-separated string if multiple numbers)
+      return result.length > 0 ? result.join(", ") : "No numbers are both a square and a cube.";
+    }
+  
+    // Handle the case where no numbers are found
+    return "No numbers found in the query.";
+  }  
+
   
   return "";
 }
