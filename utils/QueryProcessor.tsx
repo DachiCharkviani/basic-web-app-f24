@@ -98,7 +98,27 @@ export default function QueryProcessor(query: string): string {
   
     // Handle the case where no numbers are found
     return "No numbers found in the query.";
-  }  
+  }
+  
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("minus")) {
+    // Extract numbers from the query using a regular expression
+    const numbers = query.match(/\d+/g);
+  
+    if (numbers) {
+      // Convert extracted numbers to integers
+      const numericValues = numbers.map(Number);
+  
+      // Perform the subtraction operation (subtract second number from the first)
+      const difference = numericValues.reduce((a, b) => a - b);
+      
+      // Return the result as a string
+      return difference.toString();
+    }
+  
+    // Handle the case where no numbers are found
+    return "No numbers found in the query.";
+  }
+  
   
   return "";
 }

@@ -66,5 +66,21 @@ describe("QueryProcessor", () => {
             "60"
         ));
     });
+
+    test('should return the correct product', () => {
+        const query = "What is 53 multiplied by 33?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "1749"
+        ));
+    });
+    
+    test('should return correct product with different numbers', () => {
+        const query = "What is 10 multiplied by 5?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "50"
+        ));
+    });
     
 });
