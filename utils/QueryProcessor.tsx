@@ -241,5 +241,27 @@ export default function QueryProcessor(query: string): string {
   }
   
 
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("multiplied by") && query.toLowerCase().includes("plus")) {
+    // Extract numbers from the query using a regular expression
+    const numbers = query.match(/\d+/g);
+  
+    if (numbers && numbers.length === 3) {
+      // Convert extracted numbers to integers
+      const firstNumber = parseInt(numbers[0], 10);  // 4
+      const secondNumber = parseInt(numbers[1], 10); // 7
+      const thirdNumber = parseInt(numbers[2], 10);  // 52
+  
+      // Perform multiplication first, then addition
+      const result = (firstNumber * secondNumber) + thirdNumber;
+      
+      // Return the result as a string
+      return result.toString();
+    }
+  
+    // Handle the case where no numbers are found or invalid number of numbers
+    return "Invalid query format or numbers.";
+  }
+  
+
   return "";
 }
