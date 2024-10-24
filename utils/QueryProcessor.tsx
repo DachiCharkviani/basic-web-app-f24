@@ -18,5 +18,16 @@ export default function QueryProcessor(query: string): string {
     return ( "Davit" );
   }
 
+  if (query.toLowerCase().includes("which of the following numbers is the largest")) {
+    // Extract numbers from the query using a regular expression
+    const numbers = query.match(/\d+/g).map(Number); // Finds all numbers and converts them to integers
+    
+    // Find the largest number
+    const largestNumber = Math.max(...numbers);
+    
+    // Return the largest number as a string
+    return largestNumber.toString();
+  }
+  
   return "";
 }

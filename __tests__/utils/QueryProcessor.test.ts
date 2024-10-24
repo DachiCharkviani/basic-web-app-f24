@@ -28,10 +28,18 @@ describe("QueryProcessor", () => {
     });
 
     test('should return my name', () => {
-        const query = "What is your name?";
+        const query = "name";
         const response: string = QueryProcessor(query);
         expect(response).toBe((
-            "22694eaf"
+            "Davit"
+          ));
+    });
+
+    test('should return highest', () => {
+        const query = "which of the following numbers is the largest: 10, 20, 1?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "20"
           ));
     });
 });
